@@ -34,10 +34,10 @@ watch(error, (value)=>{
       acceptLabel: 'Quit',
       rejectLabel: 'Cancel',
       reject() {
-        window.ipcRenderer.closeWindow();
+        window.ipcRenderer.send('close-window');
       },
       accept() {
-        window.ipcRenderer.closeWindow();
+        window.ipcRenderer.send('close-window');
       },
     })
   }
