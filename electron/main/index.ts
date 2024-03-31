@@ -46,6 +46,10 @@ const indexHtml = join(process.env.DIST, 'index.html')
 
 async function createWindow() {
   win = new BrowserWindow({
+    width: 1080,
+    height: 720,
+    minWidth: 680,
+    minHeight: 570,
     title: 'Main window',
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
@@ -125,4 +129,13 @@ ipcMain.handle('open-win', (_, arg) => {
 
 ipcMain.on('close-window', () => {
   app.quit()
+})
+
+ipcMain.on('minimize-window', ()=>{
+    win?.minimize()
+})
+
+ipcMain.on('open-browser', (_, args)=>{
+    console.log(args)
+    shell.openExternal(args)
 })

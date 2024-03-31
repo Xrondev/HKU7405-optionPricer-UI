@@ -17,7 +17,7 @@ import Tooltip from 'primevue/tooltip'
 
 const app = createApp(App)
 const pinia = createPinia()
-
+app.directive('tooltip', Tooltip)
 app.use(PrimeVue).use(ConfirmationService).use(pinia)
     .mount('#app')
     .$nextTick(() => {
@@ -26,4 +26,4 @@ app.use(PrimeVue).use(ConfirmationService).use(pinia)
 
 
 app.component('ButtonGroup', ButtonGroup)
-app.directive('tooltip', Tooltip)
+

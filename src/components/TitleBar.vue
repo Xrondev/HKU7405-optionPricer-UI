@@ -7,9 +7,16 @@
     <template #end>
       <div>
       <ButtonGroup>
-        <Button icon="pi pi-github"/>
+        <Button icon="pi pi-github" @click="dialog = true"/>
+        <Button icon="pi pi-minus" @click="minimizeWindow"/>
         <Button icon="pi pi-times" @click="closeWindow" />
       </ButtonGroup></div>
+      <Dialog v-model:visible="dialog" modal header="Visit our Github Repository" :style="{width: '50vw'}">
+        <div style="width:100%; display:flex; flex-direction:column;align-items:center">
+          <Button style="width:80%; margin: 5px" @click="openBrowser('python')">Python Source Code for Calculation Implement</Button>
+          <Button style="width:80%; margin: 5px" @click="openBrowser('GUI')">Graphical User Interface Program</Button>
+        </div>
+      </Dialog>
     </template>
   </Toolbar>
 </template>
@@ -17,14 +24,29 @@
 <script setup lang="ts">
 import ButtonGroup from "primevue/buttongroup";
 import remote from "electron";
+import {ref} from "vue";
+
+const dialog = ref(false)
 
 
 const openSettings = () => {
   // Logic to open settings
 };
 
+const openBrowser = (loc: string) => {
+  if (loc === 'python') {
+    window.ipcRenderer.send("open-browser", 'https://github.com/atair-ibn-laahad/7405-assignment3');
+  }else{
+    window.ipcRenderer.send("open-browser", 'https://github.com/Xrondev/HKU7405-optionPricer-UI');
+  }
+};
+
+const minimizeWindow = () => {
+  window.ipcRenderer.send("minimize-window");
+};
+
 const closeWindow = () => {
-  window.ipcRenderer.closeWindow();
+  window.ipcRenderer.send("close-window");
 };
 </script>
 

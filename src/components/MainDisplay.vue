@@ -28,7 +28,7 @@
                  style="display:flex; flex-direction: row; justify-content: space-between;align-items:center ; padding: 10px"
             >
               <span>{{ param.name }}</span>
-              <InputText v-model="param.val" style="width:50%" v-tooltip.left="store.helperInfo.parameterInfo[param.name]"/>
+              <InputText v-model="param.val" style="width:50%" v-tooltip.left="store.helperInfo.parameterInfo[param.name] ?? 'No explanation found in this method\'s PyDoc'"/>
 
             </div>
           </div>

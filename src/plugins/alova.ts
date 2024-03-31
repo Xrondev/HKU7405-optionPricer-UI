@@ -31,6 +31,7 @@ export type CalculationType = {
     info: string | null;
 };
 export const getCalculationTypes = alovaInstance.Get('/', {
+    timeout: 5000,
     transformData(rawData: AxiosResponse, headers) {
         const response = rawData.data as CalculationTypeList;
         console.log(response)
