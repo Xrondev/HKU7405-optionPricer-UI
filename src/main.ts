@@ -7,6 +7,7 @@ import 'primevue/resources/themes/aura-light-green/theme.css'
 import './style.css'
 import ConfirmationService from 'primevue/confirmationservice'
 import {createPinia} from "pinia";
+import Tooltip from 'primevue/tooltip'
 
 // import './demos/ipc'
 
@@ -25,3 +26,4 @@ app.use(PrimeVue).use(ConfirmationService).use(pinia)
 
 
 app.component('ButtonGroup', ButtonGroup)
+app.directive('tooltip', Tooltip)

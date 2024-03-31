@@ -28,7 +28,7 @@
                  style="display:flex; flex-direction: row; justify-content: space-between;align-items:center ; padding: 10px"
             >
               <span>{{ param.name }}</span>
-              <InputText v-model="param.val" style="width:50%"/>
+              <InputText v-model="param.val" style="width:50%" v-tooltip.left="store.helperInfo.parameterInfo[param.name]"/>
 
             </div>
           </div>
@@ -63,9 +63,8 @@ import {getCalculationResults} from "@/plugins/alova";
 
 const confirm = useConfirm()
 const showInfoDialog = () => {
-  console.log("showInfoDialog")
   confirm.require({
-    message: store.selectedCalculation?.info ?? "This part does not have PyDoc comment.",
+    message: store.helperInfo.explanation ?? "This method's author does not provide PyDoc comment.",
     header: 'Information',
     // icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'OK',

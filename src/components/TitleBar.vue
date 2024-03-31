@@ -7,7 +7,7 @@
     <template #end>
       <div>
       <ButtonGroup>
-        <Button icon="pi pi-cog"/>
+        <Button icon="pi pi-github"/>
         <Button icon="pi pi-times" @click="closeWindow" />
       </ButtonGroup></div>
     </template>
