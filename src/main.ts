@@ -6,10 +6,10 @@ import 'primeicons/primeicons.css'
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import './style.css'
 import ConfirmationService from 'primevue/confirmationservice'
-
-
-import './demos/ipc'
 import {createPinia} from "pinia";
+
+// import './demos/ipc'
+
 
 // If you want use Node.js, the`nodeIntegration` needs to be enabled in the Main process.
 // import './demos/node'

@@ -7,20 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AutoComplete: typeof import('primevue/autocomplete')['default']
     Button: typeof import('primevue/button')['default']
-    ButtonGroup: typeof import('primevue/buttongroup')['default']
     CalculationTypeList: typeof import('./src/components/CalculationTypeList.vue')['default']
-    Card: typeof import('primevue/card')['default']
-    Column: typeof import('primevue/column')['default']
-    DataTable: typeof import('primevue/datatable')['default']
     Divider: typeof import('primevue/divider')['default']
-    InputNumber: typeof import('primevue/inputnumber')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Listbox: typeof import('primevue/listbox')['default']
     MainDisplay: typeof import('./src/components/MainDisplay.vue')['default']
-    ScrollPanel: typeof import('primevue/scrollpanel')['default']
-    Sidebar: typeof import('primevue/sidebar')['default']
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
     Toolbar: typeof import('primevue/toolbar')['default']
   }

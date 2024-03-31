@@ -60,7 +60,6 @@ import {computed, Ref, ref} from "vue";
 import {useStore} from "@/plugins/pinia";
 import {useRequest} from "alova";
 import {getCalculationResults} from "@/plugins/alova";
-import IconField from "primevue/iconfield/IconField.vue";
 
 const confirm = useConfirm()
 const showInfoDialog = () => {

@@ -3,9 +3,9 @@
  */
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "YourAppID",
+  "appId": "com.github.xrondev.simple-option-pricer",
   "asar": true,
-  "productName": "YourAppName",
+  "productName": "SimpleOptionPricer",
   "directories": {
     "output": "release/${version}"
   },
@@ -22,13 +22,13 @@
   "win": {
     "target": [
       {
-        "target": "nsis",
+        "target": "portable",
         "arch": [
           "x64"
         ]
       }
     ],
-    "artifactName": "${productName}-Windows-${version}-Setup.${ext}"
+    "artifactName": "${productName}-Windows-${version}.${ext}"
   },
   "nsis": {
     "oneClick": false,
