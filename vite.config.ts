@@ -5,6 +5,7 @@ import electron from 'vite-plugin-electron/simple'
 import pkg from './package.json'
 import {PrimeVueResolver} from "unplugin-vue-components/resolvers";
 import Components from 'unplugin-vue-components/vite'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -15,6 +16,12 @@ export default defineConfig(({ command }) => {
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG
 
   return {
+    resolve: {
+      alias: [{
+        find: "@",
+        replacement: resolve(__dirname, './src')
+      }]
+    },
     plugins: [
       vue(),
       electron({
@@ -38,7 +45,8 @@ export default defineConfig(({ command }) => {
                 // we can use `external` to exclude them to ensure they work correctly.
                 // Others need to put them in `dependencies` to ensure they are collected into `app.asar` after the app is built.
                 // Of course, this is not absolute, just this way is relatively simple. :)
-                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+                // add axios to dependencies
+                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}).concat(['axios'])
               },
             },
           },

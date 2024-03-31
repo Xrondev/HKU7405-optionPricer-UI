@@ -39,6 +39,8 @@
   "dependencies": {
     "@alova/adapter-axios": "^1.2.3",
     "alova": "^2.18.2",
+    "axios": "^1.6.8",
+    "pinia": "^2.1.7",
     "primeicons": "^7.0.0",
     "primevue": "^3.50.0"
   }

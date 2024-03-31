@@ -7,7 +7,7 @@
     <template #end>
       <div>
       <ButtonGroup>
-        <Button icon="pi pi-cog" />
+        <Button icon="pi pi-cog" @click="openDoc"/>
         <Button icon="pi pi-times" @click="closeWindow" />
       </ButtonGroup></div>
     </template>
@@ -39,6 +39,8 @@ const closeWindow = () => {
 }
 
 .drag-area {
+  font-weight: 500;
+  font-size: 1.5rem;
   -webkit-app-region: drag;
 }
 

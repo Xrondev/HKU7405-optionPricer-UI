@@ -5,17 +5,19 @@ import PrimeVue from 'primevue/config'
 import 'primeicons/primeicons.css'
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import './style.css'
-
+import ConfirmationService from 'primevue/confirmationservice'
 
 
 import './demos/ipc'
+import {createPinia} from "pinia";
 
 // If you want use Node.js, the`nodeIntegration` needs to be enabled in the Main process.
 // import './demos/node'
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(PrimeVue)
+app.use(PrimeVue).use(ConfirmationService).use(pinia)
     .mount('#app')
     .$nextTick(() => {
         postMessage({payload: 'removeLoading'}, '*')
