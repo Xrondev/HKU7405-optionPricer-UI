@@ -14,6 +14,7 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     Listbox: typeof import('primevue/listbox')['default']
     MainDisplay: typeof import('./src/components/MainDisplay.vue')['default']
+    SelectButton: typeof import('primevue/selectbutton')['default']
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
     Toolbar: typeof import('primevue/toolbar')['default']
   }

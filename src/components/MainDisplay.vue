@@ -28,8 +28,8 @@
                  style="display:flex; flex-direction: row; justify-content: space-between;align-items:center ; padding: 10px"
             >
               <span>{{ param.name }}</span>
-              <InputText v-model="param.val" style="width:50%" v-tooltip.left="store.helperInfo.parameterInfo[param.name] ?? 'No explanation found in this method\'s PyDoc'"/>
-
+              <InputText v-if="inputType(param.name) === 'text'" v-model="param.val" style="width:50%" v-tooltip.left="store.helperInfo.parameterInfo[param.name] ?? 'No explanation found in this method\'s PyDoc'"/>
+              <SelectButton v-if="inputType(param.name) === 'switch'" v-model="param.val" :options="optionType"/>
             </div>
           </div>
         </div>
@@ -56,10 +56,11 @@
 <script lang="ts" setup>
 import ConfirmDialog from "primevue/confirmdialog";
 import {useConfirm} from "primevue/useconfirm";
-import {computed, Ref, ref} from "vue";
+import {computed, Ref, ref, watch, watchEffect} from "vue";
 import {useStore} from "@/plugins/pinia";
 import {useRequest} from "alova";
 import {getCalculationResults} from "@/plugins/alova";
+import {AxiosError} from "axios";
 
 const confirm = useConfirm()
 const showInfoDialog = () => {
@@ -103,12 +104,19 @@ const calculate = () => {
       params[item.name] = item.val
     })
     console.log(params)
-    send(url, params)
-    if (error.value) {
-      console.error(error.value)
-    }else{
-      console.log(data)
-    }
+    send(url, params).catch((error: AxiosError) => {
+      console.log(error)
+      // Ah, typescript...
+      if (error.response !== undefined && error.response.data !== null && error.response.data !== undefined) {
+        const errorData = error.response.data as { detail: string }
+        confirm.require({
+          message:  errorData['detail'] ?? "An error occurred",
+          header: 'Error' ,
+          icon: 'pi pi-exclamation-triangle',
+          acceptLabel: 'OK',
+        })
+      }
+    })
   }
 }
 
@@ -126,6 +134,15 @@ const getName = computed(() => {
 const show = computed(() => {
   return store.selectedCalculation !== null
 })
+
+const optionType = ['put', 'call']
+const inputType = (param: string) => {
+  if (param === 'option_type'){
+    return 'switch'
+  }else {
+    return 'text'
+  }
+}
 </script>
 
 <style scoped>
