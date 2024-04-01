@@ -38,7 +38,7 @@
           <div
               style="height: 95%; display: flex; justify-content: center; align-items:center; flex-direction:column">
             Result
-            <p>{{ result }}</p>
+            <p>{{ data }}</p>
 
           </div>
         </div>
@@ -87,11 +87,11 @@ store.$subscribe((mutation, state) => {
   }
 })
 
-const result = ref(0)
 const {data, error, send} = useRequest((url, params) => getCalculationResults(url, params), {
   immediate: false,
   initialData: 0
 })
+
 const calculate = () => {
   console.log("calculate")
   const url = store.selectedCalculation?.url
@@ -106,8 +106,8 @@ const calculate = () => {
     send(url, params)
     if (error.value) {
       console.error(error.value)
-    } else {
-      result.value = data.value
+    }else{
+      console.log(data)
     }
   }
 }
