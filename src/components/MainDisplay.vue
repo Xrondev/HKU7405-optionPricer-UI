@@ -112,6 +112,10 @@ const calculate = () => {
   }
 }
 
+store.$subscribe((mutation, state) => {
+  data.value = 0
+})
+
 const getName = computed(() => {
   if (store.selectedCalculation !== null) {
     return store.selectedCalculation.name
